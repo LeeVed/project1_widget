@@ -1,4 +1,6 @@
-from .masks import get_mask_account, get_mask_card_number
+from src.masks import get_mask_account, get_mask_card_number
+
+
 def mask_account_card(card_account_number: str) -> str:
     """Функция принимает на вход строку, содержащую тип и номер карты или счета и
     возвращает строку с замаскированным номером"""
