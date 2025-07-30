@@ -1,6 +1,6 @@
 from datetime import datetime
 
-date_object = datetime.strptime("2023-10-22", "%Y-%m-%d")
+datetime.strptime("2023-10-22", "%Y-%m-%d")
 
 
 def filter_by_state(dictionary_list: list, state: str = "EXECUTED") -> list:
