@@ -3,12 +3,12 @@ from datetime import datetime
 date_object = datetime.strptime("2023-10-22", "%Y-%m-%d")
 
 
-def filter_by_state(list_dic: list, state: str = "EXECUTED") -> list:
+def filter_by_state(dictionary_list: list, state: str = "EXECUTED") -> list:
     """Функция  принимает список словарей и опционально значение для ключа state
     (по умолчанию 'EXECUTED') и возвращает новый список словарей, содержащий только
     те словари, у которых ключ state соответствует указанному значению."""
     filter_list = []
-    for item in list_dic:
+    for item in dictionary_list:
         if item.get("state") == state:
             filter_list.append(item)
     return filter_list
