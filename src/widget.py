@@ -28,9 +28,4 @@ def get_date(data_str: str) -> str:
     return f"{date_split[2]}.{date_split[1]}.{date_split[0]}"
 
 
-if __name__ == "__main__":
-    print(mask_account_card("Visa Gold 5999414228426353"))
-    print(mask_account_card("Счет 64686473678894779589"))
-    print(get_date("2024-03-11T02:26:18.671407"))
-    print(get_mask_account("73654108430135874305"))
-    print(get_mask_card_number("1234567812345678"))
+

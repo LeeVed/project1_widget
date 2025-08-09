@@ -13,6 +13,4 @@ def get_mask_account(account_number: str) -> str:
         return mask_account
     return "Некорректный номер счета"
 
-if __name__ == "__main__":
-    print(get_mask_card_number("1234567890123456"))
-    print(get_mask_account("1234567890123456"))
+

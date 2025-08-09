@@ -8,3 +8,14 @@ if __name__ == '__main__':
     #print(filter_by_state(list_state, key_state='CANCELED'))
     #print(filter_by_state(list_state))
     print(sort_by_date(list_state, sorting=False))
+
+if __name__ == "__main__":
+    print(get_mask_card_number("1234567890123456"))
+    print(get_mask_account("1234567890123456"))
+
+if __name__ == "__main__":
+    print(mask_account_card("Visa Gold 5999414228426353"))
+    print(mask_account_card("Счет 64686473678894779589"))
+    print(get_date("2024-03-11T02:26:18.671407"))
+    print(get_mask_account("73654108430135874305"))
+    print(get_mask_card_number("1234567812345678"))
