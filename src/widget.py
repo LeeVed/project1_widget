@@ -7,11 +7,18 @@ def mask_account_card(card_account_number: str) -> str:
     возвращает строку с замаскированным номером"""
     index_digit = card_account_number.rfind(" ")
     if "Счет" in card_account_number[:index_digit]:
-        mask_account = get_mask_account(card_account_number[index_digit + 1 :])
-        return card_account_number[: index_digit + 1] + mask_account
+        if card_account_number[-20:].isdigit():
+            mask_account = get_mask_account(card_account_number[index_digit + 1 :])
+            return card_account_number[: index_digit + 1] + mask_account
+        else:
+            return "Некорректный номер счета"
+
     else:
-        mask_card_number = get_mask_card_number(card_account_number[index_digit + 1 :])
-        return card_account_number[: index_digit + 1] + mask_card_number
+        if card_account_number[-16:].isdigit():
+            mask_card_number = get_mask_card_number(card_account_number[index_digit + 1 :])
+            return card_account_number[: index_digit + 1] + mask_card_number
+        else:
+            return "Некорректный номер карты"
 
 
 def get_date(data_str: str) -> str:
