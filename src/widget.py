@@ -12,7 +12,6 @@ def mask_account_card(card_account_number: str) -> str:
             return card_account_number[: index_digit + 1] + mask_account
         else:
             return "Некорректный номер счета"
-
     else:
         if card_account_number[-16:].isdigit():
             mask_card_number = get_mask_card_number(card_account_number[index_digit + 1 :])
@@ -26,6 +25,3 @@ def get_date(data_str: str) -> str:
     date = data_str[:10]
     date_split = date.split("-")
     return f"{date_split[2]}.{date_split[1]}.{date_split[0]}"
-
-
-

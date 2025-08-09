@@ -12,5 +12,3 @@ def get_mask_account(account_number: str) -> str:
         mask_account = f"**{account_number[-4:]}"
         return mask_account
     return "Некорректный номер счета"
-
-
