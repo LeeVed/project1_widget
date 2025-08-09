@@ -14,11 +14,11 @@ def test_get_mask_card_number(card_number, expected):
     assert get_mask_card_number(card_number) == expected
 
 
-@pytest.mark.parametrize("account_number, expected", [("1234567890123456", "**3456"),
-                                                   ("9876543210987654", "**7654"),
-                                                   ("4567890123456789", "**6789"),
-                                                   ("1111111111111111",  "**1111"),
-                                                   ("0000000000000000", "**0000"),
+@pytest.mark.parametrize("account_number, expected", [("12341234567890123456", "**3456"),
+                                                   ("09879876543210987654", "**7654"),
+                                                   ("56784567890123456789", "**6789"),
+                                                   ("11111111111111111111",  "**1111"),
+                                                   ("00000000000000000000", "**0000"),
                                                    ("123456789012345", "Некорректный номер счета"),
                                                    ("12c345678901234a", "Некорректный номер счета")])
 def test_get_mask_account(account_number, expected):
