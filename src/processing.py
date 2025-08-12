@@ -39,6 +39,7 @@ def sort_by_date(date_dic_list: list, key_date: str = "date", descending: bool =
 
 
 if __name__ == "__main__":
+
     print(
         filter_by_state(
             [
