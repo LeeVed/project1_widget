@@ -31,7 +31,7 @@ file_name = "../tests/mylog.txt"
 def add(x, y):
     return x + y
 
-def test_addition() -> int:
+def test_addition() -> None:
     result = add(5, 6)
     assert result == 11
 
