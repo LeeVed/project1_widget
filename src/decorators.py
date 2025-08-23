@@ -1,13 +1,13 @@
-from time import time
-import os
-from typing import Callable, Any
+from typing import Any
+from typing import Callable
 
 
 def log(filename: str | None = None) -> Callable:
-    """ Функция-декоратор, которая автоматически логирует начало и конец выполнения функции,
+    """Функция-декоратор, которая автоматически логирует начало и конец выполнения функции,
     а также ее результаты или возникшие ошибки."""
+
     def decorator(func: Callable) -> Callable:
-         def wrapper(*args: Any, **kwargs: Any) -> Any:
+        def wrapper(*args: Any, **kwargs: Any) -> Any:
             try:
                 result = func(*args, **kwargs)
                 message = f"{func.__name__} ok. Result: {result}"
@@ -27,6 +27,6 @@ def log(filename: str | None = None) -> Callable:
                     print(message)
                 raise
 
-         return wrapper
+        return wrapper
 
     return decorator

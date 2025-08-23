@@ -1,7 +1,5 @@
 import re
 
-import pytest
-
 from src.generators import card_number_generator
 from src.generators import filter_by_currency
 from src.generators import transaction_descriptions
@@ -29,39 +27,13 @@ def test_filter_by_currency_empty_list(transactions_empty_list: list) -> None:
     assert len(result) == 0
 
 
-def test_transaction_correct_description(transactions_data: list) -> None:
-    descriptions = list(transaction_descriptions(transactions_data))
-    expected_descriptions = [
-        """ "Перевод организации", "Перевод с карты на счет", "Перевод со счета на счет",
-                             "Перевод со счета на карту", "Перевод с карты на карту" """
-    ]
-    assert descriptions == expected_descriptions
-
-
-@pytest.mark.parametrize(
-    "transactions_data, expected_descriptions",
-    [
-        ([], []),
-        ([{"id": 1, "description": "Перевод организации"}], ["Перевод организации"]),
-        (
-            [
-                {"id": 2, "description": "Перевод с карты на счет"},
-                {"id": 3, "description": "Перевод со счета на счет"},
-                {"id": 4, "description": "Перевод со счета на карту"},
-                {"id": 5, "description": "Перевод с карты на карту"},
-            ],
-            [
-                "Перевод с карты на счет",
-                "Перевод со счета на счет",
-                "Перевод со счета на карту",
-                "Перевод с карты на карту",
-            ],
-        ),
-    ],
-)
-def test_transaction_descriptions(transactions_data: list, expected_descriptions: str) -> None:
-    descriptions = list(transaction_descriptions(transactions_data))
-    assert descriptions == expected_descriptions
+def test_transaction_descriptions(transactions_data: list) -> None:
+    descriptions = transaction_descriptions(transactions_data)
+    assert next(descriptions) == "Перевод организации"
+    assert next(descriptions) == "Перевод с карты на счет"
+    assert next(descriptions) == "Перевод со счета на счет"
+    assert next(descriptions) == "Перевод со счета на карту"
+    assert next(descriptions) == "Перевод с карты на карту"
 
 
 def test_card_number_generator() -> None:

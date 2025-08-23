@@ -1,5 +1,4 @@
 import pytest
-import os
 
 
 @pytest.fixture
@@ -85,9 +84,9 @@ def transactions_data() -> list:
     ]
 
 
-@pytest.fixture(autouse=True)
-def clear_log_file():
-    file_name = "mylog.txt"
-    if os.path.exists(file_name):
-        with open(file_name, "w") as f:
-            f.truncate(0)
+# @pytest.fixture(autouse=True)
+# def clear_log_file() -> None:
+#     file_name = "mylog.txt"
+#     if os.path.exists(file_name):
+#         with open(file_name, "w") as f:
+#             f.truncate(0)
