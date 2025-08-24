@@ -82,3 +82,11 @@ def transactions_data() -> list:
         {"id": 4, "description": "Перевод со счета на карту"},
         {"id": 5, "description": "Перевод с карты на карту"},
     ]
+
+
+# @pytest.fixture(autouse=True)
+# def clear_log_file() -> None:
+#     file_name = "mylog.txt"
+#     if os.path.exists(file_name):
+#         with open(file_name, "w") as f:
+#             f.truncate(0)
