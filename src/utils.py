@@ -9,6 +9,12 @@ def open_json(path: str) -> Any:
     try:
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
+    except json.JSONDecodeError as e:
+        print(e)
+        return []
+    except FileNotFoundError as e:
+        print(e)
+        return []
     except Exception as error:
         print(error)
         return []
@@ -16,13 +22,13 @@ def open_json(path: str) -> Any:
 
 def convert_amount(dict_list: dict) -> Any:
     """Функция возвращает сумму транзакции в рублях"""
-    if dict_list != {}:
+    try:
         currency = dict_list["operationAmount"]["currency"]["code"]
         amount = dict_list["operationAmount"]["amount"]
         if currency == "RUB":
-            return f"Сумма транзакции - {amount} руб."
+            return float(amount)
         else:
             result = convert_currency(currency, amount)
-            return f"Сумма транзакции - {result} руб."
-    else:
+            return round(result, 2)
+    except (KeyError, TypeError):
         return "Неверный формат"
