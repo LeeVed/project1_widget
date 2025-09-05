@@ -1,3 +1,5 @@
+from src.masks import get_mask_account
+from src.masks import get_mask_card_number
 from src.utils import convert_amount
 from src.utils import open_json
 
@@ -59,3 +61,10 @@ if __name__ == "__main__":
 if __name__ == "__main__":
     for i in transactions:
         print(convert_amount(i))
+
+if __name__ == "__main__":
+    print(get_mask_card_number("Visa Platinum 7000 79** **** 6361"))
+
+
+if __name__ == "__main__":
+    print(get_mask_account("Счет **4305"))
