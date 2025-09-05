@@ -1,6 +1,6 @@
-import json, logging
+import json
+import logging
 from typing import Any
-
 from src.external_api import convert_currency
 
 logger = logging.getLogger(__name__)
