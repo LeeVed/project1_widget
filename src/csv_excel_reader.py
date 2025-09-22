@@ -1,6 +1,8 @@
-import pandas as pd
 import csv
-from typing import Any, Hashable
+from typing import Any
+from typing import Hashable
+
+import pandas as pd
 
 
 def read_transaction_csv(file_path: str) -> list[dict[str, str]]:
@@ -10,16 +12,7 @@ def read_transaction_csv(file_path: str) -> list[dict[str, str]]:
         reader = csv.DictReader(file, delimiter=";")
         dictionary_list_csv = []
         for row in reader:
-            try:
-                for key, value in row.items():
-                    if value == "":
-                        return []
-            except ValueError as e:
-                print(f"Ошибка данных: {e}")
-                continue
             dictionary_list_csv.append(row)
-        if not dictionary_list_csv:
-            print("Warning: Файл пустой")
     return dictionary_list_csv
 
 
@@ -28,15 +21,4 @@ def read_transaction_excel(file_path: str) -> list[dict[Hashable, Any]]:
     транзакциями."""
     df = pd.read_excel(file_path)
     dictionary_list_excel = df.to_dict(orient="records")
-    for row in dictionary_list_excel:
-        for key, value in row.items():
-            if value == "":
-                return []
-            if key == "amount":
-                try:
-                    int(value)
-                except ValueError:
-                    print(f"Warning: Некорректное значение в поле '{key}'")
-    if df.empty:
-        print("Warning: Файл пустой")
     return dictionary_list_excel

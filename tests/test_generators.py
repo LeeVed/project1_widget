@@ -2,6 +2,7 @@ import re
 
 from src.generators import card_number_generator
 from src.generators import filter_by_currency
+from src.generators import filter_by_currency_csv_excel
 from src.generators import transaction_descriptions
 
 transactions = [
@@ -55,3 +56,16 @@ def test_card_number_generator_boundary() -> None:
     expected_cards = ["4000 1234 5678 8000", "4000 1234 5678 8001", "4000 1234 5678 8002"]
     generated_cards = [card for card in card_number_generator(start, stop)]
     assert generated_cards == expected_cards, "Генератор не выдаёт все значения в диапазоне, включая крайние"
+
+
+transactions_csv_excel = [
+    {"id": 1, "amount": "150", "currency_code": "USD"},
+    {"id": 2, "amount": "200", "currency_code": "EUR"},
+    {"id": 3, "amount": "300", "currency_code": "USD"},
+]
+
+
+def test_filter_by_currency_csv_excel() -> None:
+    result = list(filter_by_currency_csv_excel(transactions_csv_excel, "USD"))
+    assert len(result) == 2
+    assert all(transaction["currency_code"] == "USD" for transaction in result)
