@@ -6,10 +6,17 @@ def filter_by_currency(transactions: list, currency: str) -> Iterator:
     """Функция принимает на вход список словарей, представляющих транзакции и
     возвращает итератор, который поочередно выдает транзакции,
     где валюта операции соответствует заданной (например, USD)."""
-    counter = 0
     for transaction in transactions:
         if transaction["operationAmount"]["currency"]["code"] == currency:
-            counter += 1
+            yield transaction
+
+
+def filter_by_currency_csv_excel(transactions: list, currency: str) -> Iterator:
+    """Функция принимает на вход список словарей в формате csv, excel, представляющих транзакции и
+    возвращает итератор, который поочередно выдает транзакции,
+    где валюта операции соответствует заданной (например, USD)."""
+    for transaction in transactions:
+        if transaction["currency_code"] == currency:
             yield transaction
 
 

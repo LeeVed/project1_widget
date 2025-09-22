@@ -1,10 +1,10 @@
-import json
-import logging
+import json, logging
 from typing import Any
+
 from src.external_api import convert_currency
 
 logger = logging.getLogger(__name__)
-file_handler = logging.FileHandler("logs/utils.log", "w", "utf-8")
+file_handler = logging.FileHandler("logs.utils.log", "w", "utf-8")
 file_formatter = logging.Formatter("%(asctime)s %(filename)s %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
@@ -30,7 +30,7 @@ def open_json(path: str) -> Any:
 
 
 def convert_amount(dict_list: dict) -> Any:
-    """Функция возвращает сумму транзакции в рублях"""
+    """Функция возвращает сумму транзакции в рублях для формата json"""
     logger.info("Запущена функция convert_amount")
     try:
         currency = dict_list["operationAmount"]["currency"]["code"]
@@ -45,3 +45,14 @@ def convert_amount(dict_list: dict) -> Any:
     except (KeyError, TypeError):
         logger.error("Ошибка: неверный формат")
         return "Неверный формат"
+
+
+def convert_amount_csv_excel(dictionary: dict) -> Any:
+    """Функция возвращает сумму транзакции в рублях для форматов csv и excel"""
+    currency = dictionary["currency_code"]
+    amount = dictionary["amount"]
+    if currency == "RUB":
+        return float(amount)
+    else:
+        result = convert_currency(currency, amount)
+        return round(result, 2)
